@@ -8,7 +8,7 @@ public class WelcomeController {
 
     @GetMapping(value = "/welcome")
     public String welcome() {
-        return "Welcome to Spring Security Udemy Course";
+        return "Welcome to Spring Security Udemy Course Application with security";
     }
 
 }

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: ${SPRING_APP_NAME:section1}
+
+  security:
+    user:
+      name: admin
+      password: pwd
+
+logging:
+  level:
+    org.springframework.security: ${SPRING_SECURITY_LOG_LEVEL:INFO}
+  pattern:
+    console: '%green(%d{HH:mm:ss.SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n'
