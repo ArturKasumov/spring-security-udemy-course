@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:9.6
+    container_name: security_udemy_course_section4
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+      MYSQL_DATABASE: security_udemy_course_section4
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pwd
+    ports:
+      - "3306:3306"
+    volumes:
+      - security_udemy_course_section4:/var/lib/mysql
+
+volumes:
+  security_udemy_course_section4:

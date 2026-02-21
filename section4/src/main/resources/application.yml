@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: section4
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/security_udemy_course_section4
+    username: user
+    password: pwd
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    org.springframework.security: INFO
+  pattern:
+    console: '%green(%d{HH:mm:ss.SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n'
