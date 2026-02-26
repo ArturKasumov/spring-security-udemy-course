@@ -23,7 +23,7 @@ public class CustomUsernamePasswordAuthenticationProvider implements Authenticat
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        if(!passwordEncoder.matches(password, userDetails.getPassword())) {
+        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
             throw new BadCredentialsException("Invalid password for user: " + username);
         }
         return new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
