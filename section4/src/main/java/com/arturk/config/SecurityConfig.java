@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.List;
@@ -20,14 +22,20 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests((requests) ->
-                requests.requestMatchers("/notices", "/contact").permitAll()
+                requests.requestMatchers("/notices", "/contact", "/customer/register").permitAll()
                         .anyRequest().authenticated()
         );
         http.formLogin(withDefaults());
-        http.httpBasic(AbstractHttpConfigurer::disable);
+        http.httpBasic(withDefaults());
         return http.build();
     }
+
+    /*@Bean
+    UserDetailsService userDetailsService(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
+    }*/
 
     @Bean
     UserDetailsService userDetailsService(CustomerService customerService) {
@@ -35,5 +43,10 @@ public class SecurityConfig {
             CustomerEntity customer = customerService.getCustomerByEmail(username);
             return new User(customer.getEmail(), customer.getPassword(), List.of(new SimpleGrantedAuthority(customer.getRole())));
         };
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }
