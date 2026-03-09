@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: section10
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/security_udemy_course_section10
+    username: user
+    password: pwd
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: validate
+
+logging:
+  level:
+    org.springframework.security: INFO
+  pattern:
+    console: '%green(%d{HH:mm:ss.SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n'
