@@ -1,0 +1,15 @@
+spring:
+  security:
+    user:
+      name: admin
+      password: pwd
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 923047606974-5ecnnqntqm7bl7hb2jh3mt71mkll7nvq.apps.googleusercontent.com
+            client-secret: xxx
+            scope:
+              - openid
+              - profile
+              - email
