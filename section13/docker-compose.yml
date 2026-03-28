@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:9.6
+    container_name: security_udemy_course_section13_sql
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+      MYSQL_DATABASE: security_udemy_course_section13
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pwd
+    ports:
+      - "3306:3306"
+    volumes:
+      - security_udemy_course_section13:/var/lib/mysql
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0
+    container_name: security_udemy_course_section13_keycloak
+    ports:
+      - "8180:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: start-dev
+
+volumes:
+  security_udemy_course_section13:
