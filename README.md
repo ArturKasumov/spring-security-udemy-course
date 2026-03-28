@@ -1,4 +1,4 @@
-# 🔐 Spring Security Learning Project
+# 🔐 Spring Security Learning Project 
 
 This project is a structured journey through **Spring Security**, covering everything from basic authentication to advanced topics like **OAuth2**, **JWT**, and **Keycloak**.
 
