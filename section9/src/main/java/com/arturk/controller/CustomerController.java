@@ -29,14 +29,8 @@ public class CustomerController {
         return customerService.getCustomerByEmail(email);
     }
 
-    @SneakyThrows
     @GetMapping
     public String getCurrentCustomer() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Map<String, String> map = new HashMap<>();
-        map.put("username", authentication.getName());
-        map.put("password", authentication.getCredentials() != null ? authentication.getCredentials().toString() : "");
-        map.put("role", authentication.getAuthorities() != null ? authentication.getAuthorities().toString() : "");
-        return new ObjectMapper().writeValueAsString(map);
+        return customerService.getCurrentCustomer();
     }
 }
